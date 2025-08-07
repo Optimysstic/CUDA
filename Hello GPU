@@ -1,0 +1,13 @@
+#include <stdio.h>
+
+__global__ void helloGPU(){
+    if(threadIdx.x == 0 && blockIdx.x == 0){
+        printf("hello from the gpu!\n");
+    }
+}
+int main() {
+    helloGPU<<<1, 1>>>();
+    cudaDeviceSynchronize ();
+    printf("hello from the cpu!\n");
+    return 0;
+}
